@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  
+    <div class="box">
+        <h4 class="quote">Daily Quotes</h4>
+        
+    <button id="newQ">New Quotes</button>
+    <div id="quotes"></div>
+    <div id="author"></div>
+    </div>
+    <script  >
+        const newQ = document.getElementById("newQ");     
+        const quotes = document.getElementById("quotes");
+        const author = document.getElementById("author");
+        
+        let  realData = "";
+        let quotesData="";
+      const getNewQuotes = () => {
+          let rNumber= Math.floor(Math.random()*2000);
+        quotesData = realData[rNumber];
+        
+        quotes.innerText=`${quotesData.text.substring()}`;
+     
+        quotesData.author === null
+        ?(author.innerText="unknown")
+         :(author.innerText=`${quotesData.author}`);
+          //  console.log(realData[rNumber].text);
+        //  quotes.innerText = `${realData[rNumber].text}`;
+        //  author.innerText = `${realData[rNumber].author}`;
+    
+        };
+        const getQuotes =async()=>{
+            const api="https://type.fit/api/quotes";
+            try{
+                let data=await fetch(api);
+                realData= await  data.json();
+                  getNewQuotes().substring();
+            }catch(error){
+
+            }
+        };
+       newQ.addEventListener('click',getNewQuotes);
+        getQuotes();
+    </script>
+</body>
+</html>
